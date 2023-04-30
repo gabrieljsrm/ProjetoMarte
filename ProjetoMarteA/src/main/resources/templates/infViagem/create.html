@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+</head>
+<meta charset="UTF-8">
+	<title>on Mars!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/">Fiap</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="mynavbar">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/produto">Produto</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/fornecedor">Fornecedor</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/categoria">Categoria</a>
+					</li>
+				</ul>
+				<form class="d-flex">
+					<div style="float: right;">
+						<p class="text-white" th:text="${nome}"></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</nav>
+	<div class="container mt-5">
+		<h2 class="text-center">Cadastrar sua viagem</h2>
+		<form method="post" action="/infViagem/create">
+			<p>Nome da Nave: <input type="text" name="nomeModeloNave" id="nomeModeloNave" /></p>
+			<p>Data Decolagem: <input type="date" name="dataDecolagem" id="dataDecolagem" /></p>
+			<p>Duração Estadia: <input type="number" name="duracaoEstadia" id="duracaoEstadia" /></p>
+			<p>Assentos Disponíveis: <input type="number" name="assentosDisponiveis" id="assentosDisponiveis" /></p>
+			<p>Nome do Primeiro Comandante: <input type="text" name="nomePrimeiroComandante" id="nomePrimeiroComandante" /></p>
+			<p>Matrícula do Primeiro Comandante: <input type="text" name="matriculaPrimeiroComandante" id="matriculaPrimeiroComandante" /></p>
+			<p>Nome do Segundo Comandante: <input type="text" name="nomeSegundoComandante" id="nomeSegundoComandante" /></p>
+			<p>Matrícula do Segundo Comandante: <input type="text" name="matriculaSegundoComandante" id="matriculaSegundoComandante" /></p>
+			<input type="submit" value="Salvar" />
+		</form>
+	</div>
+</body>
+
+</html>
