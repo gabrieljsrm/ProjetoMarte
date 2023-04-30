@@ -52,7 +52,6 @@ public class ViagemController {
 	@GetMapping("/edit")
 	public ModelAndView teste() {
 		ModelAndView model = new ModelAndView("infViagem/edit");
-		List<Viagem> listViagem = viagemRepository.findAll();
 		return model; 
 	}		
 	
