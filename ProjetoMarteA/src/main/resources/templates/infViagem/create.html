@@ -13,44 +13,50 @@
 <body>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/">Fiap</a>
+			<a class="navbar-brand" href="/">Tourism on Mars Company</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="/produto">Produto</a>
+						<a class="nav-link" href="/infViagem">Cadastro Viagem</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/fornecedor">Fornecedor</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/categoria">Categoria</a>
-					</li>
+						<a class="nav-link" href="/infViagem/edit">Editar Viagem</a>
+					</li>					
 				</ul>
-				<form class="d-flex">
-					<div style="float: right;">
-						<p class="text-white" th:text="${nome}"></p>
-					</div>
-				</form>
-			</div>
+				</div>
 		</div>
 	</nav>
 	<div class="container mt-5">
 		<h2 class="text-center">Cadastrar sua viagem</h2>
-		<form method="post" action="/infViagem/create">
-			<p>Nome da Nave: <input type="text" name="nomeModeloNave" id="nomeModeloNave" /></p>
-			<p>Data Decolagem: <input type="date" name="dataDecolagem" id="dataDecolagem" /></p>
-			<p>Duração Estadia: <input type="number" name="duracaoEstadia" id="duracaoEstadia" /></p>
-			<p>Assentos Disponíveis: <input type="number" name="assentosDisponiveis" id="assentosDisponiveis" /></p>
-			<p>Nome do Primeiro Comandante: <input type="text" name="nomePrimeiroComandante" id="nomePrimeiroComandante" /></p>
-			<p>Matrícula do Primeiro Comandante: <input type="text" name="matriculaPrimeiroComandante" id="matriculaPrimeiroComandante" /></p>
-			<p>Nome do Segundo Comandante: <input type="text" name="nomeSegundoComandante" id="nomeSegundoComandante" /></p>
-			<p>Matrícula do Segundo Comandante: <input type="text" name="matriculaSegundoComandante" id="matriculaSegundoComandante" /></p>
+		<form method="post" action="/infViagem/create" onsubmit="return validarForm()">
+			<p>Nome da Nave (Formato: aaaa-9999): <input type="text" name="nomeModeloNave" id="nomeModeloNave" pattern="[A-Za-z]{4}-[0-9]{4}" required/></p>
+			<p>Data Decolagem: <input type="date" name="dataDecolagem" id="dataDecolagem" required /></p>
+			<p>Duração Estadia: <input type="number" name="duracaoEstadia" id="duracaoEstadia" min="0" required /></p>
+			<p>Assentos Disponíveis (Formato: Múltiplos de 3): <input type="number" name="assentosDisponiveis" id="assentosDisponiveis" min="3" step="3" required/></p>
+			<p>Nome do Primeiro Comandante: <input type="text" name="nomePrimeiroComandante" id="nomePrimeiroComandante" required /></p>
+			<p>Matrícula do Primeiro Comandante (Formato: XXX-9999-X9X): <input type="text" name="matriculaPrimeiroComandante" id="matriculaPrimeiroComandante" pattern="^[a-zA-Z]{3}-\\d{4}-[a-zA-Z]\\d[a-zA-Z]$" required/></p>
+			<p>Nome do Segundo Comandante: <input type="text" name="nomeSegundoComandante" id="nomeSegundoComandante" required /></p>
+			<p>Matrícula do Segundo Comandante (Formato: XXX-9999-X9X): <input type="text" name="matriculaSegundoComandante" id="matriculaSegundoComandante" pattern="^[a-zA-Z]{3}-\\d{4}-[a-zA-Z]\\d[a-zA-Z]$" required/></p>
 			<input type="submit" value="Salvar" />
 		</form>
 	</div>
 </body>
 
+<script>
+
+
+function validarForm() {
+  const assentos = document.getElementById('assentosDisponiveis').value;
+  if (assentos % 3 !== 0) {
+    alert('O número de assentos disponíveis deve ser múltiplo de 3');
+    return false;
+  }
+  return true;
+}
+</script>
+
 </html>
+

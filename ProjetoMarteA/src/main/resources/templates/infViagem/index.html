@@ -19,14 +19,11 @@
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="infViagem">Cadastro Viagem</a>
+						<a class="nav-link" href="/infViagem">Cadastro Viagem</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/fornecedor">Fornecedor</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="javascript:void(0)">Link</a>
-					</li>
+						<a class="nav-link" href="/infViagem/edit">Editar Viagem</a>
+					</li>					
 				</ul>
 				</div>
 		</div>
@@ -34,8 +31,13 @@
 
 	<div class="container">
 		<a type="button" class="btn btn-primary mt-2" href="infViagem/create"> Criar</a>
+		<br>
+		<br>
 
-		<table>
+		<div class="table-responsive">
+		<div style="text-align:center"><h3>Dados Viagens</h3></div>
+		<table class="table table-striped table-bordered" style="line-height: 2em">
+			<caption></caption>
 			<thead>
 				<th>Id</th>
 				<th>Nome da nave</th>
@@ -46,7 +48,7 @@
 				<th>Matrícula do Primeiro Comandante</th>
 				<th>Nome do Segundo Comandante</th>
 				<th>Matrícula do Segundo Comandante</th>
-				
+				<th></th>
 				
 			</thead>
 			<tbody>
@@ -56,7 +58,6 @@
 					<td th:text="${viagem.getDataDecolagem()}"></td>
 					<td th:text="${viagem.getDuracaoEstadia()}"></td>
 					<td th:text="${viagem.getAssentosDisponiveis()}"></td>
-					<td th:text="${viagem.getNomeModeloNave()}"></td>
 					<td th:text="${viagem.getNomePrimeiroComandante()}"></td>
 					<td th:text="${viagem.getMatriculaPrimeiroComandante()}"></td>
 					<td th:text="${viagem.getNomeSegundoComandante()}"></td>

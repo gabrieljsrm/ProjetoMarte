@@ -49,6 +49,13 @@ public class ViagemController {
 		return "redirect:/infViagem";
 	}
 	
+	@GetMapping("/edit")
+	public ModelAndView teste() {
+		ModelAndView model = new ModelAndView("infViagem/edit");
+		List<Viagem> listViagem = viagemRepository.findAll();
+		return model; 
+	}		
+	
 	@GetMapping("/edit/{id}")
 	public String getById(Model model, @PathVariable("id")Integer idViagem) {
 		model.addAttribute("idViagem", idViagem);
