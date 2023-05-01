@@ -22,6 +22,8 @@ public class Viagem {
 
 	@PositiveOrZero
 	private int duracaoEstadia;
+	
+	private LocalDate dataRetorno;
 
 	@PositiveOrZero
 	private int assentosDisponiveis;
@@ -116,5 +118,16 @@ public class Viagem {
 	public void setMatriculaSegundoComandante(String matriculaSegundoComandante) {
 		this.matriculaSegundoComandante = matriculaSegundoComandante;
 	}
+
+	public LocalDate getDataRetorno() {
+		return dataRetorno;
+	}
+
+	public void setDataRetorno(LocalDate dataRetorno) {
+		this.dataRetorno = dataRetorno;
+	}
+	
+	
+	
 
 }
