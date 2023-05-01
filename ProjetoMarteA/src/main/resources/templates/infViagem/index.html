@@ -62,7 +62,8 @@
 					<td th:text="${viagem.getMatriculaPrimeiroComandante()}"></td>
 					<td th:text="${viagem.getNomeSegundoComandante()}"></td>
 					<td th:text="${viagem.getMatriculaSegundoComandante()}"></td>
-					<td><a th:href="@{/infViagem/delete/{viagemId} (viagemId = ${viagem.id}) }">Deletar</a></td>					
+					<td><a th:href="@{/infViagem/delete/{viagemId} (viagemId = ${viagem.id}) }">Deletar</a></td>
+					<td><a th:href="@{/infViagem/edit/{viagemId} (viagemId = ${viagem.id}) }">Edit</a></td>					
 					
 				</tr>
 			</tbody>

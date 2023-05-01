@@ -24,10 +24,9 @@ public class Viagem {
 	private int duracaoEstadia;
 
 	@PositiveOrZero
-	//@Pattern(regexp = "^([3-9]|[1-9]\\d*[3-9])$")
 	private int assentosDisponiveis;
 
-	@Pattern(regexp = "^[a-z]{4}-\\d{4}$")
+	@Pattern(regexp = "^[a-zA-Z]{4}-\\d{4}$")
 	private String nomeModeloNave;
 
 	@NotNull(message = "O nome do primeiro comandate é obrigatório!")

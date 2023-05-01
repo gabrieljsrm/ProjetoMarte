@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Editar produto</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<title>Editar sua viagem</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/">Tourism on Mars Company</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -28,10 +28,73 @@
 				</div>
 		</div>
 	</nav>
-	
-	Tela de produtos(view)
-	<!--Comentários html -->
-	<p>Identificador para edição: <span th:text="${idProduto}"></span>.</p>
+	<div class="container mt-5">
+		<h2 class="text-center">Editar sua viagem</h2>
+		<form th:action="@{/infViagem/edit/{id}(id=${viagem.id})}" method="post" onsubmit="return validarForm()" th:object="${viagem}">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token != null ? _csrf.token : ''}" />
+			<p>Nome da Nave (Formato: aaaa-9999): <input type="text" name="nomeModeloNave" id="nomeModeloNave" pattern="[A-Za-z]{4}-[0-9]{4}" required th:value="${viagem.nomeModeloNave}" /></p>
+			<p>Data Decolagem: <input type="date" name="dataDecolagem" id="dataDecolagem" required th:value="${viagem.dataDecolagem}" /></p>
+			<p>Duração Estadia: <input type="number" name="duracaoEstadia" id="duracaoEstadia" min="0" required th:value="${viagem.duracaoEstadia}" /></p>
+			<p>Assentos Disponíveis (Formato: Múltiplos de 3): <input type="number" name="assentosDisponiveis" id="assentosDisponiveis" min="3" step="3" required th:value="${viagem.assentosDisponiveis}"/></p>
+			<p>Nome do Primeiro Comandante: <input type="text" name="nomePrimeiroComandante" id="nomePrimeiroComandante" required th:value="${viagem.nomePrimeiroComandante}" /></p>
+			<p>Matrícula do Primeiro Comandante (Formato: XXX-9999-X9X): <input type="text" name="matriculaPrimeiroComandante" id="matriculaPrimeiroComandante" pattern="^[a-zA-Z]{3}-[0-9]{4}-[a-zA-Z][0-9][a-zA-Z]$" required th:value="${viagem.matriculaPrimeiroComandante}"/></p>
+			<p>Nome do Segundo Comandante: <input type="text" name="nomeSegundoComandante" id="nomeSegundoComandante" required th:value="${viagem.nomeSegundoComandante}" /></p>
+			<p>Matrícula do Segundo Comandante (Formato: XXX-9999-X9X): <input type="text" name="matriculaSegundoComandante" id="matriculaSegundoComandante" pattern="^[a-zA-Z]{3}-[0-9]{4}-[a-zA-Z][0-9][a-zA-Z]$" required th:value="${viagem.matriculaSegundoComandante}"/></p>
+			<input type="submit" value="Salvar" />
+		</form>
+	</div>
+</body>
 
+<script>
+
+
+function validarForm() {
+    var nomeModeloNave = document.getElementById("nomeModeloNave").value;
+    var dataDecolagem = document.getElementById("dataDecolagem").value;
+    var duracaoEstadia = document.getElementById("duracaoEstadia").value;
+    var assentosDisponiveis = document.getElementById("assentosDisponiveis").value;
+    // Validar formato do nome do modelo da nave
+    if (!/^([A-Za-z]{4})-([0-9]{4})$/.test(nomeModeloNave)) {
+        alert("Formato inválido para o nome do modelo da nave. O formato correto é: aaaa-9999");
+        return false;
+    }
+
+    // Validar data de decolagem
+    var dataAtual = new Date();
+    if (new Date(dataDecolagem) < dataAtual) {
+        alert("A data de decolagem deve ser maior ou igual à data atual.");
+        return false;
+    }
+
+    // Validar duração de estadia
+    if (duracaoEstadia <= 0) {
+        alert("A duração da estadia deve ser um número positivo.");
+        return false;
+    }
+
+    // Validar formato dos números de assentos disponíveis
+    if (assentosDisponiveis % 3 != 0) {
+        alert("O número de assentos disponíveis deve ser múltiplo de 3.");
+        return false;
+    }
+
+    // Validar formato da matrícula do primeiro comandante
+    var matriculaPrimeiroComandante = document.getElementById("matriculaPrimeiroComandante").value;
+    if (!/^[a-zA-Z]{3}-[0-9]{4}-[a-zA-Z][0-9][a-zA-Z]$/.test(matriculaPrimeiroComandante)) {
+        alert("Formato inválido para a matrícula do primeiro comandante. O formato correto é: XXX-9999-X9X");
+        return false;
+    }
+
+    // Validar formato da matrícula do segundo comandante
+    var matriculaSegundoComandante = document.getElementById("matriculaSegundoComandante").value;
+    if (!/^[a-zA-Z]{3}-[0-9]{4}-[a-zA-Z][0-9][a-zA-Z]$/.test(matriculaSegundoComandante)) {
+        alert("Formato inválido para a matrícula do segundo comandante. O formato correto é: XXX-9999-X9X");
+        return false;
+    }
+
+    return true;
+}
+
+</script>
 </body>
 </html>
